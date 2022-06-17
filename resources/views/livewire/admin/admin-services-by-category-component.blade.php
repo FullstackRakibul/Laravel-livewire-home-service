@@ -13,12 +13,12 @@
         <div class="bg_parallax image_02_parallax"></div>
         <div class="opacy_bg_02">
             <div class="container">
-                <h1>Service Categories </h1>
+                <h1>{{$category_name}} Services  </h1>
                 <div class="crumbs">
                     <ul>
                         <li><a href="/">Home</a></li>
                         <li>/</li>
-                        <li>Service Categories</li>
+                        <li>{{$category_name}} Services </li>
                     </ul>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <div class="row">
-                                        <div class="col-md-6">All Service Categories</div>
+                                        <div class="col-md-6">{{$category_name}} Services</div>
                                         <div class="col-md-6">
                                             <a href="{{route('admin.add_service_categories')}}" class="btn btn-primary pull-right"> Add Service
                                                 Category </a>
@@ -59,17 +59,16 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($scategories as $scategory)
+                                        @foreach($services as $service)
                                             <tr>
-                                                <td>{{$scategory->id}}</td>
-                                                <td><img src="{{asset('images/categories')}}/{{$scategory->image}}">
+                                                <td>{{$service->id}}</td>
+                                                <td><img src="{{asset('images/services')}}/{{$service->image}}" width="80">
                                                 </td>
-                                                <td>{{$scategory->name}}</td>
-                                                <td>{{$scategory->slug}}</td>
+                                                <td>{{$service->name}}</td>
+                                                <td>{{$service->slug}}</td>
                                                 <td>
-                                                    <a href="{{route('admin.services_by_category',['category_slug'=>$scategory->slug])}}" style="margin-right: 10px;"><i class="fa fa-list fa-2x text-info p-1"></i></a>
-                                                    <a href="{{route('admin.edit_service_categories',['category_id'=>$scategory->id])}}"><i class="fa fa-edit fa-2x text-info p-1"></i></a>
-                                                    <a href="#" onclick="confirm('Are you sure ?')|| event.stopImmediatePropagation()" wire:click.prevent="deleteServicecategory({{$scategory->id}})">
+                                                    <a href="#"><i class="fa fa-edit fa-2x text-info p-1"></i></a>
+                                                    <a href="#" onclick="confirm('Are you sure ?')|| event.stopImmediatePropagation()" wire:click.prevent="deleteService({{$service->id}})">
                                                         <i class="fa fa-trash fa-2x text-danger p-1" style="margin-left: 10px"></i></a>
 
                                                 </td>
@@ -80,7 +79,7 @@
                                     </table>
                                 </div>
                             </div>
-                            {{$scategories->links()}}
+                            {{$services->links()}}
                         </div>
                     </div>
                 </div>
